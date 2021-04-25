@@ -47,7 +47,8 @@ const requestHandler = (req, res) => {
         });
         req.on('end', () => {
             const parsedbody = Buffer.concat(body).toString();
-            fs.appendFile('data.txt', `,${parsedbody.split('=')[1]}`, err => {
+            const username = parsedbody.split('=')[1]
+            fs.appendFile('data.txt', `,${username.replaceAll('+', ' ')}`, err => {
                 if (err) throw err;
                 console.log('Saved!');
             });
