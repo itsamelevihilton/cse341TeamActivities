@@ -2,6 +2,20 @@
 <html>
 <head>
   <% include ../includes/header.ejs %>
+  <style>
+    td {
+      border: solid;
+      border-color: white;
+      padding: 2px 5px 2px 5px;
+      max-width: 300px;
+    }
+    .product_img{
+      max-width: 280px;
+    }
+    table {
+      margin: auto;
+    }
+    </style>
 </head>
 
 <body>
@@ -9,6 +23,25 @@
 <div class="jumbotron text-center">
   <div class="container">
     <h1><%= title %></h1>
+    <input type="text" id="search" name="search" placeholder="search">
+    <button onclick="window.location = `/ta03/${document.getElementById('search').value}`">Search</button>
+    <h3><%= items.length %> Results</h3>
+    <table>
+      <tr>
+        <th>Image</th>
+        <th>Name</th>
+        <th>Price</th>
+        <th>Description</th>
+      </tr>
+      <% items.forEach(item => { %>
+        <tr>
+          <td><img src="<%= item.imageUrl %>" class="product_img"></td>
+          <td><%= item.name %></td>
+          <td><%= item.price %></td>
+          <td><%= item.description %></td>
+        </tr>
+      <% }) %>
+      </table>
     <p>This is the placeholder for Team Activity 03</p>
   </div>
 </div>
